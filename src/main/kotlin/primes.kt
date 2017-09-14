@@ -1,11 +1,17 @@
 import java.util.*
 
+class Constants {
+    companion object {
+        val MAX_INTEGER_NUMBER_TO_LOOP = 10000
+    }
+}
+
 class Primes() {
 
-    fun getPrimesBrute(n: Int): ArrayList<Int> {
+    fun getPrimesBrute(desiredNumberOfResults: Int): ArrayList<Int> {
         val result = ArrayList<Int>()
 
-        for (i in (2..n)) {
+        for (i in (2..Constants.MAX_INTEGER_NUMBER_TO_LOOP)) {
             var t = true
             s@ for (j in 2..i-1) {
                 if (i % j == 0) {
@@ -16,6 +22,8 @@ class Primes() {
                 }
             }
             if (t && endsWith7(i)) result.add(i)
+
+            if (result.size.equals(desiredNumberOfResults)) break
         }
         return result
     }
