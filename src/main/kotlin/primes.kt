@@ -15,9 +15,15 @@ class Primes() {
                     break@s
                 }
             }
-            if (t) result.add(i)
+            if (t && endsWith7(i)) result.add(i)
         }
         return result
+    }
+
+    fun endsWith7(prime: Int): Boolean {
+        val primeToString = prime.toString()
+        val lastNumber = primeToString.subSequence(primeToString.lastIndex, primeToString.lastIndex + 1)
+        return lastNumber.equals("7")
     }
 
 }
