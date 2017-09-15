@@ -10,14 +10,16 @@ class PrimesWithJava {
     IntStream.rangeClosed(2, SEARCH_LIMIT)
             .filter(i -> IntStream.rangeClosed(2, (int)Math.sqrt(i))
                     .allMatch(j -> i%j != 0))
-            .filter(prime -> {
-              String primeToString = String.valueOf(prime);
-              String lastNumber = primeToString.substring(primeToString.length() - 1);
-              return lastNumber.equals("7");
-            })
+            .filter(PrimesWithJava::endsWith7)
             .limit(RESULT_LIMIT)
             .forEach(n -> {
               System.out.println(n);
             });
+  }
+
+  private static boolean endsWith7(int prime) {
+    String primeToString = String.valueOf(prime);
+    String lastNumber = primeToString.substring(primeToString.length() - 1);
+    return lastNumber.equals("7");
   }
 }
